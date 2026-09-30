@@ -253,6 +253,7 @@ require('lazy').setup({
   require 'lazy.vim-test',
   -- Claude AI integration
   require 'lazy.claude-code',
+  require 'lazy.antigravity',
   -- LaTeX support
   require 'lazy.vimtex',
 
