@@ -82,7 +82,7 @@ end
 --- Available agents for picker
 local available_agents = {
   { id = 'antigravity', name = 'Antigravity (Gemini CLI / agy)' },
-  { id = 'claude-code',  name = 'Claude Code' },
+  { id = 'claude-code', name = 'Claude Code' },
 }
 
 --- Open fuzzy finder (Telescope / vim.ui.select) to pick an agent
@@ -126,9 +126,9 @@ function M.execute_agent(agent, variant)
       return
     end
     if variant == 'continue' then
-      claude.toggle_with_variant('continue')
+      claude.toggle_with_variant 'continue'
     elseif variant == 'verbose' then
-      claude.toggle_with_variant('verbose')
+      claude.toggle_with_variant 'verbose'
     else
       claude.toggle()
     end
@@ -174,15 +174,26 @@ end
 
 function M.setup()
   -- Normal mode keymaps under <leader>a
-  vim.keymap.set('n', '<leader>an', function() M.run('new') end, { desc = '[A]gent: [N]ew' })
-  vim.keymap.set('n', '<leader>ac', function() M.run('continue') end, { desc = '[A]gent: [C]ontinue' })
-  vim.keymap.set('n', '<leader>av', function() M.run('verbose') end, { desc = '[A]gent: [V]erbose' })
-  vim.keymap.set('n', '<leader>as', function() M.switch_agent() end, { desc = '[A]gent: [S]witch agent' })
-  vim.keymap.set('n', '<leader>aa', function() M.run('new') end, { desc = '[A]gent: Toggle [A]gent' })
+  vim.keymap.set('n', '<leader>an', function()
+    M.run 'new'
+  end, { desc = '[A]gent: [N]ew' })
+  vim.keymap.set('n', '<leader>ac', function()
+    M.run 'continue'
+  end, { desc = '[A]gent: [C]ontinue' })
+  vim.keymap.set('n', '<leader>av', function()
+    M.run 'verbose'
+  end, { desc = '[A]gent: [V]erbose' })
+  vim.keymap.set('n', '<leader>as', function()
+    M.switch_agent()
+  end, { desc = '[A]gent: [S]witch agent' })
+  vim.keymap.set('n', '<leader>aa', function()
+    M.run 'new'
+  end, { desc = '[A]gent: Toggle [A]gent' })
 
   -- Terminal mode keymaps to toggle/hide the window
-  vim.keymap.set('t', '<leader>aa', function() M.run('new') end, { desc = '[A]gent: Toggle [A]gent' })
-  vim.keymap.set('t', '<leader>an', function() M.run('new') end, { desc = '[A]gent: Toggle [A]gent' })
+  vim.keymap.set('t', '<leader>aa', function()
+    M.run 'new'
+  end, { desc = '[A]gent: Toggle [A]gent' })
 
   -- Visual mode send selection (delegates to antigravity ask_selection)
   vim.keymap.set('v', '<leader>as', function()

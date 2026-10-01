@@ -54,6 +54,7 @@ return {
         { '<leader>T', group = '[T]est' },
         { '<leader>y', group = '[Y]ank' },
         { '<leader>v', group = '[V]im' },
+        { '<leader>w', group = '[W]indow' },
       },
     },
   },

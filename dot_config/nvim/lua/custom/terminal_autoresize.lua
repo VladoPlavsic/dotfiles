@@ -64,6 +64,32 @@ function M.resize_all_floating_terminals()
   end
 end
 
+--- Setup ergonomic scroll mode keymaps for terminal buffers
+function M.setup_terminal_scroll_keymaps(buf)
+  buf = buf or vim.api.nvim_get_current_buf()
+  if not vim.api.nvim_buf_is_valid(buf) then
+    return
+  end
+
+  -- In Terminal mode (typing into prompt):
+  -- <C-s>: Toggle scroll mode (enters Normal mode and scrolls half-page up into output)
+  vim.keymap.set('t', '<C-s>', [[<C-\><C-n><C-u>]], { buffer = buf, silent = true, desc = 'Enter scroll mode' })
+
+  -- <C-u>: Scrolls half page up directly into output
+  vim.keymap.set('t', '<C-u>', [[<C-\><C-n><C-u>]], { buffer = buf, silent = true, desc = 'Scroll up half-page' })
+
+  -- <C-b> and <PageUp>: Scroll full page up directly into output
+  vim.keymap.set('t', '<C-b>', [[<C-\><C-n><C-b>]], { buffer = buf, silent = true, desc = 'Scroll up full-page' })
+  vim.keymap.set('t', '<PageUp>', [[<C-\><C-n><PageUp>]], { buffer = buf, silent = true, desc = 'Scroll up page' })
+
+  -- In Normal mode (navigating output):
+  -- <C-s>: Return to prompt at the bottom in input mode
+  vim.keymap.set('n', '<C-s>', 'G<Cmd>startinsert<CR>', { buffer = buf, silent = true, desc = 'Return to input mode' })
+
+  -- q: Return to prompt at the bottom in input mode (like less / tmux copy-mode)
+  vim.keymap.set('n', 'q', 'G<Cmd>startinsert<CR>', { buffer = buf, silent = true, desc = 'Return to input mode' })
+end
+
 function M.setup()
   local group = vim.api.nvim_create_augroup('FloatingTerminalAutoResize', { clear = true })
 
@@ -76,11 +102,13 @@ function M.setup()
     desc = 'Auto-resize floating terminal windows on tmux pane resize / zoom',
   })
 
-  -- 2. When any terminal buffer is displayed or re-displayed in a floating window
+  -- 2. When any terminal buffer is displayed or opened: attach scroll keymaps and redraw
   vim.api.nvim_create_autocmd({ 'BufWinEnter', 'TermOpen' }, {
     group = group,
     pattern = 'term://*',
     callback = function(args)
+      M.setup_terminal_scroll_keymaps(args.buf)
+
       local win = vim.api.nvim_get_current_win()
       if vim.api.nvim_win_is_valid(win) then
         local config = vim.api.nvim_win_get_config(win)
@@ -94,7 +122,7 @@ function M.setup()
         end
       end
     end,
-    desc = 'Redraw terminal content when floating window opens to prevent distortion',
+    desc = 'Setup scroll mode and redraw terminal when floating window opens',
   })
 
   -- 3. Manual redraw shortcut (<leader>tr)

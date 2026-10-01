@@ -36,7 +36,7 @@ return {
           },
         },
         window_navigation = false, -- handled by float-aware tmux-navigator to keep popup focused
-        scrolling = true,
+        scrolling = false, -- handled by custom terminal scroll mode
       },
     }
   end,

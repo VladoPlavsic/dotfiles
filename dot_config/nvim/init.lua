@@ -287,6 +287,7 @@ require('lazy').setup({
 require 'custom.statusline'
 require('custom.terminal_autoresize').setup()
 require('custom.agent_manager').setup()
+require('custom.float_focus').setup()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
