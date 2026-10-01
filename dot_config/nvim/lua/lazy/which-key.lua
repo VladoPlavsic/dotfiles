@@ -46,12 +46,12 @@ return {
       -- Document existing key chains
       spec = {
         { '<leader>a', group = '[A]I Agent' },
+        { '<leader>9', group = '[9]9 Agentic' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>g', group = '[G]it', mode = { 'n', 'v' } },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>t', group = '[T]erminal' },
         { '<leader>T', group = '[T]est' },
-        { '<leader>c', group = '[C]laude' },
         { '<leader>y', group = '[Y]ank' },
         { '<leader>v', group = '[V]im' },
       },

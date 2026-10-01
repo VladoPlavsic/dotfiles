@@ -14,7 +14,7 @@ local function get_config_file_path()
   return get_project_root() .. '/.picked-agent'
 end
 
---- Ensure .picked-agent is added to .git/info/exclude so it is never committed or tracked
+--- Ensure .picked-agent and .99 are added to .git/info/exclude so they are never committed or tracked
 local function ensure_git_ignored(root)
   if vim.fn.isdirectory(root .. '/.git') == 1 then
     local info_dir = root .. '/.git/info'
@@ -26,15 +26,25 @@ local function ensure_git_ignored(root)
     if vim.fn.filereadable(exclude_path) == 1 then
       lines = vim.fn.readfile(exclude_path)
     end
-    local already_ignored = false
-    for _, line in ipairs(lines) do
-      if line:match('^%.picked%-agent') then
-        already_ignored = true
-        break
+    local patterns = {
+      ['.picked-agent'] = '^%.picked%-agent',
+      ['.99'] = '^%.99',
+    }
+    local modified = false
+    for entry, pat in pairs(patterns) do
+      local exists = false
+      for _, line in ipairs(lines) do
+        if line:match(pat) then
+          exists = true
+          break
+        end
+      end
+      if not exists then
+        table.insert(lines, entry)
+        modified = true
       end
     end
-    if not already_ignored then
-      table.insert(lines, '.picked-agent')
+    if modified then
       vim.fn.writefile(lines, exclude_path)
     end
   end
@@ -90,6 +100,21 @@ function M.prompt_select_agent(callback)
       end
     end
   end)
+end
+
+M.get_picked_agent = read_picked_agent
+M.save_picked_agent = save_picked_agent
+
+--- Ensure an agent is selected; if not, prompt the user with fuzzy finder first
+function M.ensure_agent(callback)
+  local agent = read_picked_agent()
+  if agent then
+    if callback then
+      callback(agent)
+    end
+  else
+    M.prompt_select_agent(callback)
+  end
 end
 
 --- Execute the selected agent with the specified variant ('new', 'continue', 'verbose')

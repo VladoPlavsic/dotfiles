@@ -27,6 +27,14 @@ return {
         },
       },
       keymaps = {
+        toggle = {
+          normal = false,
+          terminal = false,
+          variants = {
+            continue = false,
+            verbose = false,
+          },
+        },
         window_navigation = false, -- handled by float-aware tmux-navigator to keep popup focused
         scrolling = true,
       },
