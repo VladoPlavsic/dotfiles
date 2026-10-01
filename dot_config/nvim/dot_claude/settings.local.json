@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://api.github.com/repos/vimichael/my-nvim-config/contents/lua/plugins)",
+      "Bash(curl -s https://raw.githubusercontent.com/vimichael/my-nvim-config/main/lua/plugins/ui.lua)",
+      "Bash(curl -s https://raw.githubusercontent.com/vimichael/my-nvim-config/main/lua/lazynvim.lua)",
+      "Bash(curl -s https://raw.githubusercontent.com/vimichael/my-nvim-config/main/lua/plugins.lua)",
+      "Bash(curl -s https://raw.githubusercontent.com/vimichael/my-nvim-config/main/lua/plugins/__TRACKED_VAR__.lua)",
+      "Bash(curl -s https://raw.githubusercontent.com/vimichael/my-nvim-config/main/lua/options.lua)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

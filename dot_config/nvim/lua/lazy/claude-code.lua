@@ -27,11 +27,7 @@ return {
         },
       },
       keymaps = {
-        toggle = {
-          normal = '<leader>cc',
-          terminal = '<leader>cc',
-        },
-        window_navigation = true,
+        window_navigation = false, -- handled by float-aware tmux-navigator to keep popup focused
         scrolling = true,
       },
     }

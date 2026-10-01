@@ -21,22 +21,4 @@ return {
       border = 'rounded',
     }
   end,
-  keys = {
-    {
-      '<leader>ag',
-      mode = { 'n', 't' },
-      function()
-        require('antigravity').toggle()
-      end,
-      desc = '[A]nti[g]ravity toggle',
-    },
-    {
-      '<leader>as',
-      mode = { 'v' },
-      function()
-        require('antigravity').ask_selection()
-      end,
-      desc = '[A]ntigravity [s]end selection',
-    },
-  },
 }
