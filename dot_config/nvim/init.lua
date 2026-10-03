@@ -256,7 +256,7 @@ require('lazy').setup({
   require 'lazy.antigravity',
   require 'lazy.99',
   -- LaTeX support
-  require 'lazy.vimtex',
+  -- require 'lazy.vimtex',
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
