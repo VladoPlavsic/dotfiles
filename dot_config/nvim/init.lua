@@ -180,7 +180,6 @@ require('lazy').setup({
   -- Store commands to quick access (tome)
   require 'lazy.tome',
   require 'lazy.persistence',
-  -- A hackable Markdown, HTML, LaTeX, Typst & YAML previewer for Neovim
   -- Full git cli support, I don't use any keybindings, use :Git and any known git command
   require 'lazy.vim-fugitive',
   require 'lazy.diffview',
@@ -214,6 +213,8 @@ require('lazy').setup({
   -- require 'lazy.elixir-beam-theme',
   -- Syntax highlight for elixir files
   require 'lazy.vim-elixir',
+  -- Syntax highlight and filetype detection for helm charts
+  require 'lazy.vim-helm',
 
   -- Highlight todo, notes, etc in comments
   require 'lazy.todo-comments',

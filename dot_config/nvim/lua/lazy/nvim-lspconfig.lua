@@ -206,6 +206,8 @@ return {
         tailwindcss = {},
         eslint = {},
         texlab = {},
+        yamlls = {},
+        helm_ls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -239,6 +241,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Lua
         'prettierd', -- JS/TS/JSON
+        -- 'yamlfmt', -- YAML
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

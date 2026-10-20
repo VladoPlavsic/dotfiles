@@ -20,6 +20,8 @@ return {
         'rust',
         'elixir',
         'eex',
+        'yaml',
+        'helm',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
