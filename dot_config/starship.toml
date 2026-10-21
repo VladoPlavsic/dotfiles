@@ -211,8 +211,54 @@ disabled = true
 disabled = false
 success_symbol = '[𝘹](bold fg:green)'
 error_symbol = '[𝘹](bold fg:red)'
-vimcmd_symbol = '[](bold fg:creen)'
+vimcmd_symbol = '[](bold fg:green)'
 vimcmd_replace_one_symbol = '[](bold fg:purple)'
 vimcmd_replace_symbol = '[](bold fg:purple)'
 vimcmd_visual_symbol = '[](bold fg:lavender)'
+
+[gcloud]
+symbol = "󱇶 "
+
+[aws]
+symbol = " "
+
+[azure]
+symbol = "󰠅 "
+
+[openstack]
+symbol = "󰠅 "
+
+[kubernetes]
+symbol = "󱃾 "
+
+[helm]
+symbol = "󱃮 "
+
+[nix_shell]
+symbol = " "
+
+[nats]
+symbol = "󰇮 "
+
+[git_commit]
+tag_symbol = "  "
+
+[shlvl]
+symbol = "󰘦 "
+
+[conda]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[cmake]
+symbol = " "
+
 
